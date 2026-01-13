@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: demo
+  datasource:
+    url: jdbc:postgresql://localhost:5432/DB-ERP
+    username: subrutin
+    password: subrutin
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+server:
+  port: 8080
+
+app:
+  auth:
+    jwt-secret: dev-secret-change-me-please-dev-secret-change-me-please
+    jwt-ttl-minutes: 120
+    reset-token-ttl-minutes: 15
+    expose-reset-token: true
+  cors:
+    allowed-origins:
+      - http://localhost:8081
+      - http://localhost:3000
