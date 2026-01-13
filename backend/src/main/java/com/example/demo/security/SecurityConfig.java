@@ -57,6 +57,7 @@ public class SecurityConfig {
 						.requestMatchers("/error").permitAll()
 						.requestMatchers("/api/auth/**").permitAll()
 						.requestMatchers("/api/inventory/**").permitAll()
+						.requestMatchers("/api/erp/**").permitAll()
 						.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 						.anyRequest().authenticated())
 				.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

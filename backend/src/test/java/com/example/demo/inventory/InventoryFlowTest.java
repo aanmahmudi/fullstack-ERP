@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -38,12 +39,13 @@ public class InventoryFlowTest {
     private static Long categoryId;
     private static Long warehouseId;
     private static Long productId;
+    private static final String SUFFIX = UUID.randomUUID().toString().substring(0, 8);
 
     @Test
     @Order(1)
     public void createCategory() throws Exception {
         CategoryDTO dto = new CategoryDTO();
-        dto.setName("Electronics");
+        dto.setName("Electronics-" + SUFFIX);
         dto.setDescription("Electronic Gadgets");
 
         MvcResult result = mockMvc.perform(post("/api/inventory/categories")
@@ -62,7 +64,7 @@ public class InventoryFlowTest {
     @Order(2)
     public void createWarehouse() throws Exception {
         WarehouseDTO dto = new WarehouseDTO();
-        dto.setName("Main Warehouse");
+        dto.setName("Main Warehouse-" + SUFFIX);
         dto.setLocation("Jakarta");
 
         MvcResult result = mockMvc.perform(post("/api/inventory/warehouses")
@@ -81,8 +83,8 @@ public class InventoryFlowTest {
     @Order(3)
     public void createProduct() throws Exception {
         ProductDTO dto = new ProductDTO();
-        dto.setSku("LAPTOP-001");
-        dto.setName("Gaming Laptop");
+        dto.setSku("LAPTOP-001-" + SUFFIX);
+        dto.setName("Gaming Laptop-" + SUFFIX);
         dto.setDescription("High-end gaming laptop");
         dto.setCategoryId(categoryId);
         dto.setUnitPrice(new BigDecimal("15000000"));
